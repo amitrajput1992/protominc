@@ -1,0 +1,19 @@
+node_modules/
+
+.npm/
+.git/
+#short_ref needed in BUILD_VERSION
+!.git/short_ref
+
+.idea/
+.vscode/
+
+data/
+build/
+cloud/
+snowpack/
+
+# ESlint coverage files
+.coverage.eslint.codeframe
+.pnpm-store/
+dev/pgadmin4/.pgpass
