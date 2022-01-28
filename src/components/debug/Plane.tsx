@@ -1,7 +1,7 @@
 import { DoubleSide } from "three";
 import React from "react";
 
-interface PlaneDirectProps {
+interface Props {
   width?: number,
   height?: number,
   color?: string,
@@ -11,9 +11,11 @@ interface PlaneDirectProps {
   map?: any,
 }
 
-export const PlaneDirect = ({ position = [0, 0, 0], width = 1, height = 1, color = "#FFF", opacity = 1, wireframe = false, map = "" }: PlaneDirectProps) => {
+export const PlaneDirect = React.forwardRef((props: Props, ref: any) => {
+  const {position = [0, 0, 0], width = 1, height = 1, color = "#FFF", opacity = 1, wireframe = false, map = ""} = props;
+
   return (
-    <mesh renderOrder={999} position={position}>
+    <mesh renderOrder={999} position={position} ref={ref}>
       {/* args = [width, height, widthSegments, heightSegments] */}
       <planeBufferGeometry args={[width, height, 1]}/>
       <meshBasicMaterial
@@ -28,4 +30,4 @@ export const PlaneDirect = ({ position = [0, 0, 0], width = 1, height = 1, color
       />
     </mesh>
   )
-};
+});

@@ -31,7 +31,7 @@ const GridLines = () => {
 
   return (
     <>
-      <lineSegments position={[-30, 30, 0.01]} rotation={[MathUtils.degToRad(90), 0, 0]}>
+      <lineSegments position={[-50, 50, 0.01]} rotation={[MathUtils.degToRad(90), 0, 0]}>
         <bufferGeometry attach="geometry">
           <bufferAttribute
             attachObject={["attributes", "position"]}
