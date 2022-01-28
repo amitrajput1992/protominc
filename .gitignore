@@ -69,3 +69,5 @@ lib/
 .cache/
 .vscode/*
 !.vscode/launch.json
+
+src/nike/*
