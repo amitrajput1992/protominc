@@ -61,8 +61,8 @@ export const MapControls = React.forwardRef((props: Props, ref) => {
       dispose={undefined}
       object={controls}
       enableDamping={true}
-      enableZoom={true}
-      enableRotate={true}
+      enableZoom={false}
+      enableRotate={false}
       panSpeed={1.2}
       {...rest}
     />
