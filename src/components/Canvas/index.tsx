@@ -32,6 +32,8 @@ const Canvas = () => {
         height: "100%"
       }}
       id="primary-canvas"
+      //toggle sRGB color management.
+      // linear={true}
     >
       {/*<planeHelper plane={new Plane(v1, 0)} size={100}/>*/}
       <MapControls ref={useStore.getState().updateMapControlsRef}/>

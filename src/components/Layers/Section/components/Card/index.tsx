@@ -5,7 +5,7 @@ import { Sphere } from "../../../../debug/Sphere";
 import { BillBoard } from "../../../../debug/BillBoard";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
-import { Frustum, Group, Matrix4, Mesh, Vector3 } from "three";
+import { Frustum, Group, Material, Matrix4, Mesh, Vector3 } from "three";
 
 /**
  * This is the actual card component that shows a thumbnail and adjusts the position of each mesh to fit into the grid
@@ -53,12 +53,25 @@ const Card = (props: Props) => {
   const [hovered, setHovered] = useState(false);
 
   const planeRef = useRef<any>();
+  const sphereRef = useRef<Mesh>();
 
   useSpring({
     to: { opacity: hovered ? 1 : 0.5 },
     onChange: (e) => {
       if (planeRef.current && planeRef.current instanceof Mesh) {
         planeRef.current.material.opacity = e.value.opacity;
+      }
+    },
+  });
+
+  useSpring({
+    to: { opacity: hovered ? 1 : 0.8 },
+    onChange: (e) => {
+      if (sphereRef.current) {
+        const materials = sphereRef.current.material;
+        if(materials instanceof Material) {
+          materials.opacity = e.value.opacity;
+        }
       }
     },
   });
@@ -87,6 +100,8 @@ const Card = (props: Props) => {
         <BillBoard>
           <Suspense fallback={null}>
             <Sphere
+              ref={sphereRef}
+              opacity={0.8}
               radius={2}
               textureUrl={card.url} />
           </Suspense>

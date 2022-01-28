@@ -1,5 +1,5 @@
 import React from "react";
-import { ClampToEdgeWrapping, DoubleSide, LinearFilter, TextureLoader } from "three";
+import { ClampToEdgeWrapping, DoubleSide, LinearFilter, Mesh, TextureLoader } from "three";
 import { useLoader } from "@react-three/fiber";
 
 type Props = {
@@ -10,15 +10,12 @@ type Props = {
   textureUrl?: string
 }
 
-export const Sphere = (
-  {
+export const Sphere = React.forwardRef((props: Props, ref: React.ForwardedRef<Mesh | undefined>) => {
+  const {
     opacity = 1,
-    phiLength = 2 * Math.PI,
     radius = 1,
-    wireframe = false,
     textureUrl = ""
-  }: Props) => {
-
+  } = props;
   const texture = useLoader(TextureLoader, textureUrl);
   texture.wrapS = ClampToEdgeWrapping;
   texture.wrapT = ClampToEdgeWrapping;
@@ -26,7 +23,7 @@ export const Sphere = (
   texture.minFilter = LinearFilter;
 
   return (
-    <mesh >
+    <mesh ref={ref}>
       {/* radius: 1, widthSegments: 32, heightSegments: 32, phiStart: 0, phiLength: 360, thetaStart: 0, thetaLength: 180 */}
       <sphereBufferGeometry attach="geometry" args={[radius, 60, 40]} />
       <meshBasicMaterial
@@ -38,4 +35,4 @@ export const Sphere = (
       />
     </mesh>
   );
-};
+});
