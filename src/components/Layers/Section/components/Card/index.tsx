@@ -51,6 +51,7 @@ const Card = (props: Props) => {
     },
   });
   const [hovered, setHovered] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const planeRef = useRef<any>();
   const sphereRef = useRef<Mesh>();
@@ -76,6 +77,18 @@ const Card = (props: Props) => {
     },
   });
 
+  useSpring({
+    to: { scale: visible ? 1 : 0 },
+    onChange: (e) => {
+      if (sphereRef.current) {
+        sphereRef.current.scale.set(e.value.scale, e.value.scale, e.value.scale);
+      }
+      if (planeRef.current && planeRef.current instanceof Mesh) {
+        planeRef.current.material.opacity = e.value.scale;
+      }
+    },
+  });
+
   useFrame(({camera}) => {
     if(!ref.current) {
       return;
@@ -83,7 +96,11 @@ const Card = (props: Props) => {
     // if the element is not in the camera frustum, don't render it
     f.setFromProjectionMatrix(m.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
     v.setFromMatrixPosition(ref.current.matrixWorld);
-    ref.current.visible = f.containsPoint(v);
+    // ref.current.visible = f.containsPoint(v);
+    const nextVisibility = f.containsPoint(v);
+    if(visible !== nextVisibility) {
+      setVisible(nextVisibility);
+    }
   });
 
 

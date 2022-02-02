@@ -14,6 +14,9 @@ type Props = {
   onEnd?: () => void,
 };
 
+const url = new URL(window.location.href);
+export const debug = url.searchParams.get("debug") === "true";
+
 export const MapControls = React.forwardRef((props: Props, ref) => {
   const { camera, onChange, onStart, onEnd, ...rest } = props;
   const invalidate = useThree(({ invalidate }) => invalidate);
@@ -61,7 +64,7 @@ export const MapControls = React.forwardRef((props: Props, ref) => {
       dispose={undefined}
       object={controls}
       enableDamping={true}
-      enableZoom={false}
+      enableZoom={debug}
       enableRotate={false}
       panSpeed={1.2}
       {...rest}
