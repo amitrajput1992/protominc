@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/protominc/static/css/main.57bad7c7.css",
+    "main.js": "/protominc/static/js/main.b7be7423.js",
+    "static/js/787.69770abf.chunk.js": "/protominc/static/js/787.69770abf.chunk.js",
+    "index.html": "/protominc/index.html",
+    "main.57bad7c7.css.map": "/protominc/static/css/main.57bad7c7.css.map",
+    "main.b7be7423.js.map": "/protominc/static/js/main.b7be7423.js.map",
+    "787.69770abf.chunk.js.map": "/protominc/static/js/787.69770abf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.57bad7c7.css",
+    "static/js/main.b7be7423.js"
+  ]
+}
